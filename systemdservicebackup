@@ -1,0 +1,11 @@
+
+  systemd.user.services.linkCD= {
+    enable = true;
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      User = "rick";
+      RemainAfterExit = true;
+      ExecStart = "/usr/bin/linkCD.sh";
+      ExecStop = "/usr/bin/ulinkCD.sh";
+    };
+  };

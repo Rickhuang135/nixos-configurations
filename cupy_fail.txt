@@ -1,0 +1,31 @@
+error: builder for '/nix/store/ssy9ywanl7h8x1pa9gwkfjqfyg8jmih1-python3.13-cython-0.29.36.drv' failed with exit code 1;
+       last 25 log lines:
+       >       | ^~~~~~
+       > /build/Cython-0.29.36/Cython/Plex/Scanners.c: In function '__Pyx_Py_UNICODE_strlen':
+       > /build/Cython-0.29.36/Cython/Plex/Scanners.c:844:5: warning: 'Py_UNICODE' is deprecated []
+       >   844 |     const Py_UNICODE *u_end = u;
+       >       |     ^~~~~
+       > /build/Cython-0.29.36/Cython/Plex/Scanners.c: In function '__Pyx_PyInt_As_long':
+       > /build/Cython-0.29.36/Cython/Plex/Scanners.c:10821:27: error: too few arguments to function '_PyLong_AsByteArray'
+       > 10821 |                 int ret = _PyLong_AsByteArray((PyLongObject *)v,
+       >       |                           ^~~~~~~~~~~~~~~~~~~
+       > In file included from /nix/store/jgm0148xmz6dcmy1ggbk2cllr7vm1xc4-python3-3.13.1/include/python3.13/longobject.h:107,
+       >                  from /nix/store/jgm0148xmz6dcmy1ggbk2cllr7vm1xc4-python3-3.13.1/include/python3.13/Python.h:81,
+       >                  from /build/Cython-0.29.36/Cython/Plex/Scanners.c:21:
+       > /nix/store/jgm0148xmz6dcmy1ggbk2cllr7vm1xc4-python3-3.13.1/include/python3.13/cpython/longobject.h:111:17: note: declared here
+       >   111 | PyAPI_FUNC(int) _PyLong_AsByteArray(PyLongObject* v,
+       >       |                 ^~~~~~~~~~~~~~~~~~~
+       > /build/Cython-0.29.36/Cython/Plex/Scanners.c: In function '__Pyx_PyInt_As_int':
+       > /build/Cython-0.29.36/Cython/Plex/Scanners.c:11017:27: error: too few arguments to function '_PyLong_AsByteArray'
+       > 11017 |                 int ret = _PyLong_AsByteArray((PyLongObject *)v,
+       >       |                           ^~~~~~~~~~~~~~~~~~~
+       > /nix/store/jgm0148xmz6dcmy1ggbk2cllr7vm1xc4-python3-3.13.1/include/python3.13/cpython/longobject.h:111:17: note: declared here
+       >   111 | PyAPI_FUNC(int) _PyLong_AsByteArray(PyLongObject* v,
+       >       |                 ^~~~~~~~~~~~~~~~~~~
+       > error: command '/nix/store/mzfk1sdv6bxvdh9slvddpj734ck99idi-gcc-wrapper-13.3.0/bin/gcc' failed with exit code 1
+       >
+       > ERROR Backend subprocess exited when trying to invoke build_wheel
+       For full logs, run 'nix log /nix/store/ssy9ywanl7h8x1pa9gwkfjqfyg8jmih1-python3.13-cython-0.29.36.drv'.
+error: 1 dependencies of derivation '/nix/store/lbxvkz82vag97gmy3939n7ixv1a3i2f0-python3.13-cupy-13.3.0.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/pgzx7wg64mwvsqq3x4z0bzi2sns71hr4-system-path.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/9zcqz8vaawgd32hmy7qnl1i4s2mmgrxj-nixos-system-rixos-24.11.20250514.5d73626.drv' failed to build
