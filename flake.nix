@@ -2,6 +2,7 @@
     description = "testing flakes";
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+	hyprland.url = "github:hyprwm/Hyprland";
     };
     outputs = inputs@{ nixpkgs, ... }: {
         nixosConfigurations = {
