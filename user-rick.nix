@@ -9,12 +9,37 @@
       tree
     ];
   };
-
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    supportedLocales = [ "en_US.UTF-8/UTF-8" "zh_CN.UTF-8/UTF-8" ];
+  };
+  i18n.inputMethod = {
+      type  = "fcitx5";
+      enable = true;
+      fcitx5.addons = with pkgs; [
+	rime-data
+        fcitx5-gtk
+        fcitx5-chinese-addons
+        librime
+      ];
+      fcitx5.waylandFrontend = true;
+  };
+  environment.sessionVariables = {
+	GTK_IM_MODULE = "fcitx";
+	INPUT_METHOD = "fcitx";
+	XMODIFIERS = "@im=fcitx";
+	QT_IM_MODULE = "fcitx";
+	SDL_IM_MODULE = "fcitx";
+        QT_QPA_PLATFORM = "wayland";
+        IM_MODULE_CLASSNAME = "QComposeInputContext";
+	
+  };
   # fonts
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
+    noto-fonts-extra
     liberation_ttf
     fira-code
     fira-code-symbols
@@ -22,39 +47,4 @@
     dina-font
     proggyfonts
   ];
-
-  fileSystems."/mnt/C" =
-    { device = "/dev/disk/by-partuuid/09b0cb85-357d-41b8-a225-ef52aecac00d";
-      fsType = "ntfs-3g"; 
-      options = [ "rw" "uid=1000"];
-    };
-  fileSystems."/mnt/D" =
-    { device = "/dev/disk/by-partuuid/876d3096-07a8-4a94-a060-fd02fb3ab346";
-      fsType = "ntfs-3g"; 
-      options = [ "rw" "uid=1000"];
-    };
-  fileSystems."/home/rick/windows_user" =
-    { depends = [ "/mnt/C" ];
-      device = "/mnt/C/Users/Rick/";
-      fsType = "none";
-      options = [ "bind" "nofail" ];
-    };
-  fileSystems."/home/rick/UoA" =
-    { depends = [ "/mnt/C" ];
-      device = "/mnt/C/Users/Rick/Documents/UoA/";
-      fsType = "none";
-      options = [ "bind" "nofail" ];
-    };
-  fileSystems."/home/rick/Music" =
-    { depends = [ "/mnt/C" ];
-      device = "/mnt/C/Users/Rick/Music";
-      fsType = "none";
-      options = [ "bind" "nofail" ];
-    };
-  fileSystems."/home/rick/Programs" =
-    { depends = [ "/mnt/D" ];
-      device = "/mnt/D/Programs";
-      fsType = "none";
-      options = [ "bind" "nofail" ];
-    };
 }

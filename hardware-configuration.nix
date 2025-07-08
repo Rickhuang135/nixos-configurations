@@ -8,43 +8,33 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "sd_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.systemd.enable = true;
+  boot.resumeDevice = "/dev/disk/by-uuid/04985179-eff9-40db-a6b0-dcd1e50f4c58";
+  boot.initrd.systemd.tpm2.enable = true;
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "uas" "sd_mod" "rtsx_pci_sdmmc" "tpm_tis" ];
+  boot.initrd.kernelModules = [ "dm-snapshot" "cryptd" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.initrd.luks.devices.cryptroot = {
+    device = "/dev/disk/by-uuid/230d8a35-b56c-4925-82de-cfb8ba566af2";
+    allowDiscards = true;
+    crypttabExtraOpts = [ "tpm2-device=auto" ];
+  };
+  security.tpm2.enable = true;
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/bf21a07b-ae71-44b4-a498-291447abb667";
-      fsType = "ext4";
-    };
-
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/26bd1456-a62e-4f9a-9afd-23e043194e18";
-      fsType = "xfs";
-    };
-
-  fileSystems."/var" =
-    { device = "/dev/disk/by-uuid/2714ad5e-b277-435e-b90f-18523b66e375";
+    { device = "/dev/disk/by-uuid/057566fd-3f44-40f1-9d69-c46fdc637ad7";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "devtmpfs";
-      fsType = "devtmpfs";
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/f58e5d7b-f3e5-4626-8f50-f1e758e575e9";
-      fsType = "xfs";
-    };
-
-  fileSystems."/opt" =
-    { device = "/dev/disk/by-uuid/75fdc778-8b26-4451-a042-93281d1e64ee";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/9CB9-EB13";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/bd16adfd-565b-4034-b8c4-735421bd7a98"; }
+    [ { device = "/dev/disk/by-uuid/04985179-eff9-40db-a6b0-dcd1e50f4c58"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -52,8 +42,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp58s0u1u1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp59s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

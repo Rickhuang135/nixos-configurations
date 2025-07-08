@@ -10,7 +10,8 @@
       ./hardware-configuration.nix
       ./user-rick.nix
       ./system_packages.nix
-      #./nvidia.nix
+      ./nvidia.nix
+      ./scripts.nix
     ];
   
   nix.nixPath = ["/etc/nix/path"];
@@ -35,9 +36,13 @@
   };
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  #boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.loader.grub.enable = lib.mkForce false;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };  
   networking.hostName = "rixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -49,21 +54,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -87,8 +77,9 @@
 
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    xwayland.enable = true;
   };
 
   programs.direnv.enable = true;
@@ -97,25 +88,12 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.nvidia.acceptLicense = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # List services that you want to enable:
-
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-
-  services.displayManager.defaultSession = "hyprland";
-
+  powerManagement.enable = true;
   services.tlp.enable = true;
-
+  programs.hyprlock.enable = true;
   services.logind = {
-    powerKey = "suspend";
+    powerKey = "hibernate";
     powerKeyLongPress = "poweroff";
   };
 

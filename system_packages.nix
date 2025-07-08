@@ -10,11 +10,16 @@
     ntfs3g
     tlp
     networkmanagerapplet
+    pciutils
+  # security
+    tpm2-tools
+    tpm2-tss
   # dependency management
     direnv
     nix-direnv
   # display and windows
     hyprland
+    hypridle
     wayland
     xwayland
     brightnessctl
@@ -23,22 +28,27 @@
     kitty
     wofi
     libnotify
+    glibcLocales
+    fcitx5-configtool
+  # nvidia related
+    mesa-demos
+    cudatoolkit
   # CLI software  
     wl-clipboard
     cliphist
     playerctl
     git
     python313
-    python313Packages.numpy
     nodejs_23
+    jdk
+    dos2unix
   # GUI software
     hyprshot
+    kdePackages.kcharselect
     dolphin
     btop
     brave
     gimp
     vscode
-  # testing
-   # python312Packages.numpy
   ];
 }
