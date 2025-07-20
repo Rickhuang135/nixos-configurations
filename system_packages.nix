@@ -11,6 +11,7 @@
     tlp
     networkmanagerapplet
     pciutils
+    pmutils
   # security
     tpm2-tools
     tpm2-tss
@@ -39,16 +40,15 @@
     playerctl
     git
     python313
-    nodejs_23
     jdk
-    dos2unix
+    typst
   # GUI software
     hyprshot
-    kdePackages.kcharselect
-    dolphin
+    kdePackages.dolphin
     btop
     brave
     gimp
     vscode
+    zathura
   ];
 }

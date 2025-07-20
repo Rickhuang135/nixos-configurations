@@ -36,7 +36,12 @@
   };
 
   # Use the systemd-boot EFI boot loader.
-  #boot.loader.systemd-boot.enable = true;
+#  boot.loader.systemd-boot.enable = true;
+  systemd.extraConfig = ''
+  [Manager]
+  RuntimeWatchdogSec = 0
+  RebootWatchdogSec = 0
+  '';
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = lib.mkForce false;
   boot.lanzaboote = {
@@ -75,6 +80,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
+  programs.hyprlock.enable = true;
   programs.hyprland = {
     enable = true;
     #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -89,9 +95,11 @@
   nixpkgs.config.nvidia.acceptLicense = true;
 
   # List services that you want to enable:
-  powerManagement.enable = true;
+#  powerManagement.enable = true;
+#  systemd.sleep.extraConfig = ''
+#    HibernateDelaySec = 1h
+#  '';
   services.tlp.enable = true;
-  programs.hyprlock.enable = true;
   services.logind = {
     powerKey = "hibernate";
     powerKeyLongPress = "poweroff";
@@ -130,6 +138,6 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }
 

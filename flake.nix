@@ -1,9 +1,9 @@
 {
     description = "testing flakes";
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 	lanzaboote = {
-          url = "github:nix-community/lanzaboote/v0.4.1";
+          url = "github:nix-community/lanzaboote/v0.4.2";
           inputs.nixpkgs.follows = "nixpkgs";
         };
     };

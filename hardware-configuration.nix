@@ -9,17 +9,19 @@
     ];
 
   boot.initrd.systemd.enable = true;
-  boot.resumeDevice = "/dev/disk/by-uuid/04985179-eff9-40db-a6b0-dcd1e50f4c58";
   boot.initrd.systemd.tpm2.enable = true;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "uas" "sd_mod" "rtsx_pci_sdmmc" "tpm_tis" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" "cryptd" ];
+  boot.initrd.kernelModules = [ "dm-mod" "dm-snapshot" "cryptd" ];
   boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelParams = [ "nowatchdog" ];
   boot.extraModulePackages = [ ];
   boot.initrd.luks.devices.cryptroot = {
     device = "/dev/disk/by-uuid/230d8a35-b56c-4925-82de-cfb8ba566af2";
     allowDiscards = true;
     crypttabExtraOpts = [ "tpm2-device=auto" ];
   };
+
+  boot.resumeDevice = "/dev/disk/by-uuid/04985179-eff9-40db-a6b0-dcd1e50f4c58";
   security.tpm2.enable = true;
 
   fileSystems."/" =
@@ -34,7 +36,7 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/04985179-eff9-40db-a6b0-dcd1e50f4c58"; }
+    [ { device = "/dev/mapper/vg_main-swap"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

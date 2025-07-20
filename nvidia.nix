@@ -20,5 +20,6 @@
     };
   };
   boot.kernelParams = [ "i915.modeset=1" "nouveau.modeset=0" ];
+  boot.blacklistedKernelModules = ["nouveau"];
   services.xserver.videoDrivers = ["modesetting" "nvidia"];
 }
