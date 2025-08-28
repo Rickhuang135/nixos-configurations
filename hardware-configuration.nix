@@ -10,10 +10,11 @@
 
   boot.initrd.systemd.enable = true;
   boot.initrd.systemd.tpm2.enable = true;
+  boot.supportedFilesystems = [ "ntfs" ];
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "uas" "sd_mod" "rtsx_pci_sdmmc" "tpm_tis" ];
   boot.initrd.kernelModules = [ "dm-mod" "dm-snapshot" "cryptd" ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelParams = [ "nowatchdog" ];
+  boot.kernelParams = [ "nowatchdog" "mem_sleep_default=deep" ];
   boot.extraModulePackages = [ ];
   boot.initrd.luks.devices.cryptroot = {
     device = "/dev/disk/by-uuid/230d8a35-b56c-4925-82de-cfb8ba566af2";
@@ -34,6 +35,17 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
+
+  fileSystems."/C" = {
+    device = "/dev/disk/by-uuid/120CF7350CF71309";
+    fsType = "ntfs-3g";
+    options = [ "rw" "uid=1000" "gid=100" "umask=022" "nofail" ];
+  };
+
+  fileSystems."/home/rick/windows_user" = {
+    device = "/C/Users/rickh";
+    options = [ "bind" "nofail" ];
+  };
 
   swapDevices =
     [ { device = "/dev/mapper/vg_main-swap"; }

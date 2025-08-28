@@ -47,4 +47,14 @@
     dina-font
     proggyfonts
   ];
+
+  environment.sessionVariables = {
+    # This variable tells Hyprland which hyprcursor theme to use
+    HYPRCURSOR_THEME = "Bibata-Modern-Ice";
+    HYPRCURSOR_SIZE = "24";
+
+    # This variable sets the fallback X cursor theme for other applications
+    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_SIZE = "24";
+  };
 }

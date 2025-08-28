@@ -2,6 +2,7 @@
     description = "testing flakes";
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+	hyprland.url = "github:hyprwm/Hyprland";
 	lanzaboote = {
           url = "github:nix-community/lanzaboote/v0.4.2";
           inputs.nixpkgs.follows = "nixpkgs";

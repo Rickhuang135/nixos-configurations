@@ -4,51 +4,57 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  # hardware programs
-    easyeffects
-    pipewire
+  # OS essentials
     ntfs3g
     tlp
     networkmanagerapplet
+    tpm2-tss
+    easyeffects
+    pipewire
+  # OS tools
     pciutils
     pmutils
-  # security
     tpm2-tools
-    tpm2-tss
-  # dependency management
+    mesa-demos
+    cudatoolkit
+  # version and dependency management
+    git
     direnv
     nix-direnv
-  # display and windows
+  # hyprland and pluggins
     hyprland
     hypridle
+    hyprshot
     wayland
     xwayland
-    brightnessctl
-  # essentail display programs
     waybar
-    kitty
-    wofi
+    brightnessctl
+    playerctl
     libnotify
     glibcLocales
     fcitx5-configtool
-  # nvidia related
-    mesa-demos
-    cudatoolkit
-  # CLI software  
     wl-clipboard
     cliphist
-    playerctl
-    git
-    python313
-    jdk
-    typst
-  # GUI software
-    hyprshot
+  # essentail apps
+    kitty
+    wofi
     kdePackages.dolphin
     btop
     brave
-    gimp
+  # Interpreters, compillers and converters
+    python313
+    jdk
+    typst
+    pandoc
+    xlsx2csv
+    poppler-utils
+  # other GUI software
+    gimp3
+    mpv
     vscode
     zathura
+  # 3D printing
+    freecad-wayland
+    bambu-studio
   ];
 }

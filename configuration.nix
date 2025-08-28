@@ -42,6 +42,7 @@
   RuntimeWatchdogSec = 0
   RebootWatchdogSec = 0
   '';
+  boot.loader.timeout = 0;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = lib.mkForce false;
   boot.lanzaboote = {
@@ -80,11 +81,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
+  xdg.portal.enable = true;
   programs.hyprlock.enable = true;
   programs.hyprland = {
     enable = true;
-    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
   };
 
@@ -100,10 +102,10 @@
 #    HibernateDelaySec = 1h
 #  '';
   services.tlp.enable = true;
-  services.logind = {
-    powerKey = "hibernate";
-    powerKeyLongPress = "poweroff";
-  };
+#  services.logind = {
+#    powerKey = "hibernate";
+#    powerKeyLongPress = "poweroff";
+#  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
