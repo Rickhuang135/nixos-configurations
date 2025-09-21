@@ -151,6 +151,6 @@
                 "🕪 "
             ]
         },
-        "on-click": "pwvucontrol"
+        "on-click": "pavucontrol"
     }
 }

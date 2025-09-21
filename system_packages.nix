@@ -11,12 +11,16 @@
     tpm2-tss
     easyeffects
     pipewire
+    pavucontrol
   # OS tools
     pciutils
     pmutils
     tpm2-tools
     mesa-demos
     cudatoolkit
+  # network tools
+    inetutils
+    jmtpfs #for MTP
   # version and dependency management
     git
     direnv
@@ -25,6 +29,7 @@
     hyprland
     hypridle
     hyprshot
+    hyprpaper
     wayland
     xwayland
     waybar
@@ -48,6 +53,9 @@
     pandoc
     xlsx2csv
     poppler-utils
+  # file comperssion
+    zip
+    unzip
   # other GUI software
     gimp3
     mpv

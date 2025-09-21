@@ -56,6 +56,7 @@
 
   # Set your time zone.
   time.timeZone = "Pacific/Auckland";
+  # time.timeZone = "Asia/Hong_Kong";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -77,7 +78,7 @@
     bluetooth.enable = true;
   };
   services.blueman.enable = true;
-
+  services.udev.enable = true;
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
