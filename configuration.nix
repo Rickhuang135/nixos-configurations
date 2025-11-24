@@ -66,13 +66,14 @@
   services.printing.enable = true;
 
   # Enable sound.
-  # hardware.pulseaudio.enable = true;
+  services.pulseaudio.enable = true;
+  services.pipewire.enable = false;
   # OR
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
+  # services.pipewire = {
+  #  enable = true;
+  #  pulse.enable = true;
+  #  jack.enable = true;
+  #};
 
   hardware = {
     bluetooth.enable = true;

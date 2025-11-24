@@ -18,6 +18,8 @@
     tpm2-tools
     mesa-demos
     cudatoolkit
+    exfatprogs
+    android-tools
   # network tools
     inetutils
     jmtpfs #for MTP
@@ -44,6 +46,7 @@
     kitty
     wofi
     kdePackages.dolphin
+    qview
     btop
     brave
   # Interpreters, compillers and converters
@@ -65,4 +68,11 @@
     freecad-wayland
     bambu-studio
   ];
+    services.mongodb ={
+	enable = true;
+	package = pkgs.mongodb-ce;
+	bind_ip = "127.0.0.1";
+	enableAuth = false;
+    };
+    systemd.services.mongodb.wantedBy = lib.mkForce [];
 }
